@@ -1,0 +1,481 @@
+@charset "UTF-8";
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* 讓圖片自適應容器最大寬度 高度自動 */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* 全域設定 border box */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/*---------------------------------------*/
+/* Pure 開始*/
+/* button核心 */
+.pure-button {
+  /* Structure */
+  display: inline-block;
+  line-height: normal;
+  white-space: nowrap;
+  vertical-align: middle;
+  text-align: center;
+  cursor: pointer;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  box-sizing: border-box;
+}
+
+/* Firefox: Get rid of the inner focus border */
+.pure-button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+/* Inherit .pure-g styles */
+.pure-button-group {
+  letter-spacing: -0.31em; /* Webkit: collapse white-space between units */
+  text-rendering: optimizespeed; /* Webkit: fixes text-rendering: optimizeLegibility */
+}
+
+.opera-only :-o-prefocus,
+.pure-button-group {
+  word-spacing: -0.43em;
+}
+
+.pure-button-group .pure-button {
+  letter-spacing: normal;
+  word-spacing: normal;
+  vertical-align: top;
+  text-rendering: auto;
+}
+
+/* button子模組 */
+/*csslint outline-none:false*/
+.pure-button {
+  font-family: inherit;
+  font-size: 100%;
+  padding: 0.5em 1em;
+  color: rgba(0, 0, 0, 0.8);
+  border: none rgba(0, 0, 0, 0);
+  background-color: #E6E6E6;
+  text-decoration: none;
+  border-radius: 2px;
+}
+
+.pure-button-hover,
+.pure-button:hover,
+.pure-button:focus {
+  background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 40%, rgba(0, 0, 0, 0.1));
+}
+
+.pure-button:focus {
+  outline: 0;
+}
+
+.pure-button-active,
+.pure-button:active {
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset, 0 0 6px rgba(0, 0, 0, 0.2) inset;
+  border-color: #000;
+}
+
+.pure-button[disabled],
+.pure-button-disabled,
+.pure-button-disabled:hover,
+.pure-button-disabled:focus,
+.pure-button-disabled:active {
+  border: none;
+  background-image: none;
+  opacity: 0.4;
+  cursor: not-allowed;
+  box-shadow: none;
+  pointer-events: none;
+}
+
+.pure-button-hidden {
+  display: none;
+}
+
+.pure-button-primary,
+.pure-button-selected,
+a.pure-button-primary,
+a.pure-button-selected {
+  background-color: rgb(0, 120, 231);
+  color: #fff;
+}
+
+/* Button Groups */
+.pure-button-group .pure-button {
+  margin: 0;
+  border-radius: 0;
+  border-right: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.pure-button-group .pure-button:first-child {
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+}
+
+.pure-button-group .pure-button:last-child {
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+  border-right: none;
+}
+
+/* Pure 結束 */
+/* RWD用 */
+html, body {
+  font-family: "Helvetica", "Arial", "LiHei Pro", "黑體-繁", "微軟正黑體", sans-serif;
+}
+
+@keyframes borderAnimation {
+  0% {
+    border-color: red;
+  }
+  50% {
+    border-color: rgb(255, 102, 0);
+  }
+  100% {
+    border-color: red;
+  }
+}
+body {
+  background: #18181b;
+  color: #E2E2E2;
+}
+body .swal2-container {
+  transform: scale(1.4);
+}
+
+.wrap {
+  width: calc(100vw - 20px);
+  height: calc(100vh - 20px);
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+  border: #E2E2E2 1px solid;
+  border-radius: 20px;
+}
+.wrap .infoBox {
+  width: 56%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  position: relative;
+}
+.wrap .infoBox .title {
+  font-size: 80px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  position: absolute;
+  top: 5%;
+  font-weight: bold;
+  letter-spacing: 18px;
+  color: #FFF;
+  border-radius: 15px;
+  padding: 10px 15px 10px 25px;
+  text-shadow: 4px 4px 6px rgb(150, 150, 150);
+}
+.wrap .infoBox .keyin {
+  width: 100%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin: 2% 1% 1% 2%;
+  border: 2px solid;
+  border-radius: 15px;
+  position: relative;
+}
+.wrap .infoBox .keyin .cradBox {
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.wrap .infoBox .keyin .cradBox #crad {
+  width: 100%;
+  padding: 5px 10px;
+  text-align: center;
+  border-radius: 10px;
+  font-size: 60px;
+  letter-spacing: 8px;
+  outline: none;
+  border: 8px solid red;
+  transition: all 0.1s;
+  animation: borderAnimation 4s infinite;
+  text-transform: uppercase;
+}
+.wrap .infoBox .keyin .cradBox #crad:hover {
+  border: 12px solid salmon;
+  animation-play-state: paused;
+}
+.wrap .infoBox .keyin .cradBox #crad:focus {
+  border: 12px solid salmon;
+}
+.wrap .infoBox .keyin .btnBox {
+  width: 80%;
+  position: absolute;
+  bottom: 10%;
+  left: 0;
+}
+.wrap .infoBox .keyin .btnBox .btn {
+  width: 40%;
+  padding: 10px;
+  float: right;
+  border: none;
+  border-radius: 15px;
+  font-size: 42px;
+  font-weight: bold;
+  outline: none;
+  background-color: #2e96ff;
+  color: white;
+  box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.2);
+  transition: all 0.2s;
+  cursor: pointer;
+}
+.wrap .infoBox .keyin .btnBox .btn:hover {
+  background-color: #54A9FF;
+}
+.wrap .infoBox .info {
+  width: 100%;
+  height: 50%;
+  display: flex;
+  margin: 1% 1% 2% 2%;
+  border: 2px solid;
+  border-radius: 15px;
+}
+.wrap .infoBox .info .meat {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.wrap .infoBox .info .vegan {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.wrap .listBox {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin: 1% 1% 1% 0.5%;
+  border: #E2E2E2 2px solid;
+  border-radius: 15px;
+}
+.wrap .listBox .nowItem {
+  width: 95%;
+  height: 28%;
+  font-size: 36px;
+  text-align: center;
+  background: #666;
+  border-radius: 15px;
+  font-weight: bold;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+.wrap .listBox .nowItem .box {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 45%;
+  max-height: 100px;
+  padding: 10px 0;
+  border-radius: 15px;
+  font-size: 42px;
+}
+.wrap .listBox .nowItem .personnel {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 49%;
+}
+.wrap .listBox .nowItem .personnel .num {
+  width: 45%;
+  font-size: 60px;
+  letter-spacing: 8px;
+  padding: 20px 0;
+  text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
+}
+.wrap .listBox .nowItem .personnel .name {
+  width: 45%;
+  min-width: 140px;
+  font-size: 58px;
+  letter-spacing: 6px;
+  padding: 20px 0;
+  text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
+}
+.wrap .listBox .nowItem .food {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 49%;
+  font-weight: bolder;
+}
+.wrap .listBox .nowItem .food .food_meat {
+  color: #E33B5C;
+  background: #333;
+  border: 3px solid;
+}
+.wrap .listBox .nowItem .food .food_meat img {
+  width: 30%;
+  max-width: 82px;
+}
+.wrap .listBox .nowItem .food .food_meat p {
+  font-size: 70px;
+  -webkit-text-stroke: 2px #FFF;
+}
+.wrap .listBox .nowItem .food .food_vegan {
+  color: #20E647;
+  background: #333;
+  border: 3px solid;
+}
+.wrap .listBox .nowItem .food .food_vegan img {
+  width: 30%;
+  max-width: 82px;
+}
+.wrap .listBox .nowItem .food .food_vegan p {
+  font-size: 70px;
+  -webkit-text-stroke: 2px #FFF;
+}
+.wrap .listBox ::-webkit-scrollbar {
+  width: 6px;
+}
+.wrap .listBox ::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  box-shadow: inset 0 0 5px rgba(240, 240, 240, 0.5);
+  background-color: rgba(240, 240, 240, 0.116);
+}
+.wrap .listBox .itemList {
+  width: 95%;
+  height: 63%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  border-radius: 15px;
+  overflow-y: scroll;
+}
+.wrap .listBox .itemList .item {
+  width: 95%;
+  height: 12.5%;
+  margin: 0 0 1.5% 2.5%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  background: #666;
+  border-radius: 15px;
+  font-weight: bold;
+  transition: all 0.3s;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+.wrap .listBox .itemList .item:hover {
+  transform: scale(1.03);
+  opacity: 0.9;
+  outline: 1px solid #FFF;
+}
+.wrap .listBox .itemList .item .personnel {
+  width: 45%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.wrap .listBox .itemList .item .personnel .num {
+  font-size: 36px;
+}
+.wrap .listBox .itemList .item .personnel .name {
+  font-size: 28px;
+}
+.wrap .listBox .itemList .item .food {
+  width: 45%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.wrap .listBox .itemList .item .food .food_meat {
+  width: 95%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 10px 0;
+  border-radius: 15px;
+  font-size: 42px;
+}
+.wrap .listBox .itemList .item .food .food_meat img {
+  max-height: 50px;
+}
+.wrap .listBox .itemList .item .food .food_vegan {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 10px 0;
+  border-radius: 15px;
+  font-size: 42px;
+}
+.wrap .listBox .itemList .item .food .food_vegan img {
+  max-height: 50px;
+}/*# sourceMappingURL=style.css.map */

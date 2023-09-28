@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>編輯食物資料</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/sweetalert2.min.css" />
+</head>
+<body>
+    <h1>編輯食物資料</h1>
+    <button onclick="updateAllFoodData()">更新全部</button>
+    <button onclick="addNewRow()">新增資料</button>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>卡號</th>
+                <th>日期</th>
+                <th>員工ID</th>
+                <th>員工名稱</th>
+                <th>肉類數量</th>
+                <th>素食數量</th>
+                <th>領餐群組</th>
+                <th>已領餐</th>
+                <th>動作</th>
+            </tr>
+        </thead>
+
+        <!-- 渲染用 -->
+        <tbody id="table-body"></tbody>
+
+    </table>
+
+
+    <!-- JS載入 -->
+    <script src="js/Axios_1.5.0.js"></script>
+    <script src="js/sweetalert2.all.min.js"></script>
+    <script src="js/edit.js"></script>
+</body>
+</html>
+

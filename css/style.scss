@@ -1,0 +1,335 @@
+@import 'reset';
+@import './mixin/RWD';
+
+
+html,body{
+  font-family: "Helvetica", "Arial","LiHei Pro","黑體-繁","微軟正黑體", sans-serif;
+}
+
+// 定義動畫關鍵幀
+@keyframes borderAnimation {
+  0% {
+    border-color: red;
+  }
+  50% {
+    border-color: rgb(255, 102, 0);
+  }
+  100% {
+    border-color: red;
+  }
+}
+
+
+
+body{
+  background: #18181b;
+  color: #E2E2E2;
+
+  .swal2-container{
+    transform: scale(1.4)
+  }
+}
+
+
+.wrap{
+  width: calc(100vw - 20px);
+  height: calc(100vh - 20px);
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+  border: #E2E2E2 1px solid;
+  border-radius: 20px;
+
+  .infoBox{
+    width: 56%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    position: relative;
+
+    .title{
+      font-size: 80px;
+      user-select: none;
+      position: absolute;
+      top: 5%;
+      font-weight: bold;
+      letter-spacing: 18px;
+      color: #FFF;
+      // border: #E2E2E2 2px dashed;
+      border-radius: 15px;
+      padding: 10px 15px 10px 25px;
+      text-shadow: 4px 4px 6px rgb(150, 150, 150);
+    }
+
+    .keyin{
+      width: 100%;
+      height: 50%;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      margin: 2% 1% 1% 2%;
+      border: 2px solid;
+      border-radius: 15px;
+      position: relative;
+
+      .cradBox{
+        width: 60%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        #crad{
+          width: 100%;
+          padding: 5px 10px;
+          text-align: center;
+          border-radius: 10px;
+          font-size: 60px;
+          letter-spacing: 8px;
+          outline: none;
+          border: 8px solid red;
+          transition: all 0.1s;
+          animation: borderAnimation 4s infinite; //使用動畫，持續時間2秒，無限循環
+          text-transform: uppercase; //強制大寫
+
+          &:hover{
+            border: 12px solid salmon;
+            animation-play-state: paused; // 暫停動畫效果
+          }
+          &:focus{
+            border: 12px solid salmon;
+          }
+          
+        }
+      }
+
+      .btnBox{
+        width: 80%;
+        position: absolute;
+        bottom: 10%;
+        left: 0;
+
+        .btn{
+          width: 40%;
+          padding: 10px;
+          float: right;
+          border: none;
+          border-radius: 15px;
+          font-size: 42px;
+          font-weight: bold;
+          outline: none;
+          background-color: #2e96ff;
+          color: white;
+          box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.2);
+          transition: all 0.2s;
+          cursor: pointer;
+
+          &:hover {
+            background-color: #54A9FF;
+          }
+        }
+      }
+
+    }
+
+    .info{
+      width: 100%;
+      height: 50%;
+      display: flex;
+      margin: 1% 1% 2% 2%;
+      border: 2px solid;
+      border-radius: 15px;
+
+      .meat{
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .vegan{
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+
+  .listBox{
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin: 1% 1% 1% 0.5%;
+    border: #E2E2E2 2px solid;
+    border-radius: 15px;
+
+    .nowItem{
+      width: 95%;
+      height: 28%;
+      font-size: 36px;
+      text-align: center;
+      background: #666;
+      border-radius: 15px;
+      font-weight: bold;
+      user-select: none;
+
+      .box{
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        width: 45%;
+        max-height: 100px;
+        padding: 10px 0;
+        border-radius: 15px;
+        font-size: 42px;
+      }
+      .personnel{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        height: 49%;
+        .num{
+          width: 45%;
+          font-size: 60px;
+          letter-spacing: 8px;
+          padding: 20px 0;
+          text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
+        }
+        .name{
+          width: 45%;
+          min-width: 140px;
+          font-size: 58px;
+          letter-spacing: 6px;
+          padding: 20px 0;
+          text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
+        }
+      }
+      .food{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        height: 49%;
+        font-weight: bolder;
+        .food_meat{
+          color: #E33B5C;
+          background: #333;
+          border: 3px solid;
+          img{
+            width: 30%;
+            max-width: 82px;
+          }
+          p{
+            font-size: 70px;
+            -webkit-text-stroke: 2px #FFF;
+          }
+        }
+        .food_vegan{
+          color: #20E647;
+          background: #333;
+          border: 3px solid;
+          img{
+            width: 30%;
+            max-width: 82px;
+          }
+          p{
+            font-size: 70px;
+            -webkit-text-stroke: 2px #FFF;
+          }
+        }
+      }
+
+    }
+
+    // 定義滾動條樣式
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    // 定義滑塊 內陰影+圓角
+    ::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      box-shadow: inset 0 0 5px rgba(240, 240, 240, 0.5);
+      background-color: rgba(240, 240, 240, 0.116); // 背景顏色使用了透明度
+    }
+    .itemList{
+      width: 95%;
+      height: 63%;
+      padding-top: 1%;
+      padding-bottom: 1%;
+      border-radius: 15px;
+      overflow-y: scroll; // 開啟Y軸滾動條
+
+
+      .item{
+        width: 95%;
+        height: 12.5%;
+        margin: 0 0 1.5% 2.5%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        text-align: center;
+        background: #666;
+        border-radius: 15px;
+        font-weight: bold;
+        transition: all 0.3s;
+        user-select: none;
+
+        &:hover{
+          transform:scale(1.03);
+          opacity: 0.9;
+          outline: 1px solid #FFF;
+        }
+        .personnel{
+          width: 45%;
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          .num{
+            font-size: 36px;
+          }
+          .name{
+            font-size: 28px;
+          }
+        }
+        .food{
+          width: 45%;
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          .food_meat{
+            width: 95%;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            padding: 10px 0;
+            border-radius: 15px;
+            font-size: 42px;
+            img{
+              max-height: 50px;
+            }
+          }
+          .food_vegan{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            padding: 10px 0;
+            border-radius: 15px;
+            font-size: 42px;
+            img{
+              max-height: 50px;
+            }
+          }
+        }
+      }
+    }
+
+  }
+
+
+}
+
+

@@ -1,0 +1,31 @@
+server {
+    listen 80;
+    listen [::]:80 default_server;
+
+    root /var/www/html;  # 靜態文件目錄
+
+    # 配置用於處理靜態文件的位置
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+
+    # 配置用於處理新的頁面 edit.html
+    location /edit {
+        try_files /edit.html =404;
+    }
+
+    # 配置用於代理到 Flask 後端的位置
+    location /api {
+        proxy_pass http://127.0.0.1:5000;  # Flask 後端的地址和端口
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+
+    # 配置用於處理靜態文件的文件類型
+    location ~* \.(css|js|png|jpg|gif)$ {
+        expires 1y;
+        add_header Cache-Control "public, max-age=31536000";
+        access_log off;
+    }
+}
+
