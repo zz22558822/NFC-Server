@@ -17,6 +17,7 @@ function populateTable(entries) {
 
 	entries.forEach(entry => {
 		const row = document.createElement('tr');
+		row.id = `row-${entry['id']}`; //加入ID用於動態刪除
         row.innerHTML = `
 			<td>${entry['id']}</td>
 			<td><input type="text" name="card_id_${entry['id']}" value="${entry['card_id'] !== null ? entry['card_id'] : ''}"></td>
@@ -27,7 +28,7 @@ function populateTable(entries) {
 			<td><input type="text" name="vegetarian_quantity_${entry['id']}" value="${entry['vegetarian_quantity'] !== null ? entry['vegetarian_quantity'] : ''}"></td>
 			<td><input type="text" name="food_group_${entry['id']}" value="${entry['food_group'] !== null ? entry['food_group'] : ''}"></td>
 			<td><input type="text" name="food_take_${entry['id']}" value="${entry['food_take'] !== null ? entry['food_take'] : ''}"></td>
-			<td><button onclick="updateFoodData('${entry['id']}')">修改</button><button onclick="deleteRow('${entry['id']}')">刪除</button></td>
+			<td><i class="fa fa-pencil-square-o" aria-hidden="true" onclick="updateFoodData('${entry['id']}')"></i><i class="fa fa-times-circle-o" aria-hidden="true" onclick="deleteRow('${entry['id']}')"></i></td>
         `;
 		tableBody.appendChild(row);
 	});
@@ -147,6 +148,7 @@ function addNewRow() {
     const newRowId = lastId + 1;
 
     const newRow = document.createElement('tr');
+    newRow.id = `row-${newRowId}`; //加入ID用於動態刪除
     newRow.innerHTML = `
         <td>${newRowId}</td>
         <td><input type="text" name="card_id_${newRowId}" value=""></td>
@@ -157,7 +159,7 @@ function addNewRow() {
         <td><input type="text" name="vegetarian_quantity_${newRowId}" value=""></td>
         <td><input type="text" name="food_group_${newRowId}" value=""></td>
         <td><input type="text" name="food_take_${newRowId}" value=""></td>
-        <td><button onclick="updateFoodData(${newRowId})">修改</button><button onclick="deleteRow(${newRowId})">刪除</button></td>
+        <td><i class="fa fa-pencil-square-o" aria-hidden="true" onclick="updateFoodData(${newRowId})"></i><i class="fa fa-times-circle-o" aria-hidden="true" onclick="deleteRow(${newRowId})"></i></td>
     `;
 
     tableBody.appendChild(newRow);
@@ -202,8 +204,13 @@ function deleteRow(entryId) {
     axios.delete(`/api/delete/${entryId}`)
         .then(response => {
             console.log('已刪除食物資料:', response.data);
-            // 這邊還需新增 移除DOM節點 不要使用重新刷新 這樣才不會導致出現問題
-            
+            // 刪除對應的DOM元素
+            const rowToRemove = document.getElementById(`row-${entryId}`);
+            if (rowToRemove) {
+                rowToRemove.remove();
+            } else {
+                console.error(`無法找到要刪除的行: ${entryId}`);
+            }
         })
         .catch(error => {
             console.error('刪除食物資料時發生錯誤:', error);

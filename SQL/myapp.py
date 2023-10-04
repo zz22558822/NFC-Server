@@ -3,7 +3,7 @@ import sqlite3
 
 app = Flask(__name__)
 
-SQL = 'database.db'
+SQL = 'database_Test.db'
 
 
 @app.route('/')
@@ -230,4 +230,3 @@ def delete_food_data(id):
 # 主程序，確保當文件被直接運行時啟動Flask應用程序
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
-
