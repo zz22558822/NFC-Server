@@ -19,7 +19,7 @@ function populateTable(entries) {
 		const row = document.createElement('tr');
 		row.id = `row-${entry['id']}`; //加入ID用於動態刪除
         row.innerHTML = `
-			<td>${entry['id']}</td>
+			<td class="ID">${entry['id']}</td>
 			<td><input type="text" name="card_id_${entry['id']}" value="${entry['card_id'] !== null ? entry['card_id'] : ''}"></td>
 			<td><input type="text" name="date_${entry['id']}" value="${entry['date'] !== null ? entry['date'] : ''}"></td>
 			<td><input type="text" name="employee_id_${entry['id']}" value="${entry['employee_id'] !== null ? entry['employee_id'] : ''}"></td>
@@ -28,7 +28,7 @@ function populateTable(entries) {
 			<td><input type="text" name="vegetarian_quantity_${entry['id']}" value="${entry['vegetarian_quantity'] !== null ? entry['vegetarian_quantity'] : ''}"></td>
 			<td><input type="text" name="food_group_${entry['id']}" value="${entry['food_group'] !== null ? entry['food_group'] : ''}"></td>
 			<td><input type="text" name="food_take_${entry['id']}" value="${entry['food_take'] !== null ? entry['food_take'] : ''}"></td>
-			<td><i class="fa fa-pencil-square-o" aria-hidden="true" onclick="updateFoodData('${entry['id']}')"></i><i class="fa fa-times-circle-o" aria-hidden="true" onclick="deleteRow('${entry['id']}')"></i></td>
+			<td class="action"><i class="fa fa-pencil-square-o" aria-hidden="true" onclick="updateFoodData('${entry['id']}')"></i><i class="fa fa-times-circle-o" aria-hidden="true" onclick="deleteRow('${entry['id']}')"></i></td>
         `;
 		tableBody.appendChild(row);
 	});
@@ -150,7 +150,7 @@ function addNewRow() {
     const newRow = document.createElement('tr');
     newRow.id = `row-${newRowId}`; //加入ID用於動態刪除
     newRow.innerHTML = `
-        <td>${newRowId}</td>
+        <td class="ID">${newRowId}</td>
         <td><input type="text" name="card_id_${newRowId}" value=""></td>
         <td><input type="text" name="date_${newRowId}" value=""></td>
         <td><input type="text" name="employee_id_${newRowId}" value=""></td>
@@ -159,7 +159,7 @@ function addNewRow() {
         <td><input type="text" name="vegetarian_quantity_${newRowId}" value=""></td>
         <td><input type="text" name="food_group_${newRowId}" value=""></td>
         <td><input type="text" name="food_take_${newRowId}" value=""></td>
-        <td><i class="fa fa-pencil-square-o" aria-hidden="true" onclick="updateFoodData(${newRowId})"></i><i class="fa fa-times-circle-o" aria-hidden="true" onclick="deleteRow(${newRowId})"></i></td>
+        <td class="action"><i class="fa fa-pencil-square-o" aria-hidden="true" onclick="updateFoodData(${newRowId})"></i><i class="fa fa-times-circle-o" aria-hidden="true" onclick="deleteRow(${newRowId})"></i></td>
     `;
 
     tableBody.appendChild(newRow);
