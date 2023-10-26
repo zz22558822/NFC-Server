@@ -1,7 +1,7 @@
 // 確保資料載入後再顯示
 window.onload = function() {
 	// 使用API調用
-	axios.get('/api')
+	axios.get('/api_User')
 		.then(response => {
 			const entries = response.data;
 			// 將表格填充為載入的資料
@@ -22,41 +22,13 @@ function populateTable(entries) {
         row.innerHTML = `
 			<td class="ID">${entry['id']}</td>
 			<td><input type="text" name="card_id_${entry['id']}" value="${entry['card_id'] !== null ? entry['card_id'] : ''}"></td>
-			<td><input type="text" name="date_${entry['id']}" value="${entry['date'] !== null ? entry['date'] : ''}"></td>
 			<td><input type="text" name="employee_id_${entry['id']}" value="${entry['employee_id'] !== null ? entry['employee_id'] : ''}"></td>
 			<td><input type="text" name="employee_name_${entry['id']}" value="${entry['employee_name'] !== null ? entry['employee_name'] : ''}"></td>
-			<td><input type="text" name="meat_quantity_${entry['id']}" value="${entry['meat_quantity'] !== null ? entry['meat_quantity'] : ''}"></td>
-			<td><input type="text" name="vegetarian_quantity_${entry['id']}" value="${entry['vegetarian_quantity'] !== null ? entry['vegetarian_quantity'] : ''}"></td>
 			<td><input type="text" name="food_group_${entry['id']}" value="${entry['food_group'] !== null ? entry['food_group'] : ''}"></td>
-			<td><input type="text" name="food_take_${entry['id']}" value="${entry['food_take'] !== null ? entry['food_take'] : ''}"></td>
 			<td class="action"><div class="actionBtn"><i class="fa fa-pencil-square-o" aria-hidden="true" onclick="updateFoodData('${entry['id']}')"></i><i class="fa fa-times-circle-o" aria-hidden="true" onclick="deleteRow('${entry['id']}')"></i></div></td>
         `;
 		tableBody.appendChild(row);
 	});
-}
-
-// 修改領餐資訊
-function updateFoodData(entryId) {
-	const newFoodTakeInput = document.getElementsByName(`food_take_${entryId}`)[0];
-	let newFoodTake = newFoodTakeInput.value;
-
-	// 如果 newFoodTake 是空白或 'null'，將其設為 null
-	if (newFoodTake.trim() == '' || newFoodTake.toLowerCase() == 'null') {
-		newFoodTake = null;
-	}
-	// 製作要發送的資料
-	const data = {
-		food_take: newFoodTake
-	};
-
-	// 發送 POST 請求更新資料
-	axios.post(`/api/update_food_take/${entryId}`, data)
-		.then(response => {
-			console.log('已更新領餐');
-		})
-		.catch(error => {
-			console.error('領餐時發生錯誤:', error);
-		});
 }
 
 // 空白與文字null 轉空值
@@ -68,33 +40,25 @@ function checkNull(value) {
 // 修改全部資訊
 function updateFoodData(entryId) {
     const cardIdInput = checkNull(document.getElementsByName(`card_id_${entryId}`)[0].value);
-    const dateInput = checkNull(document.getElementsByName(`date_${entryId}`)[0].value);
     const employeeIdInput = checkNull(document.getElementsByName(`employee_id_${entryId}`)[0].value);
     const employeeNameInput = checkNull(document.getElementsByName(`employee_name_${entryId}`)[0].value);
-    const meatQuantityInput = checkNull(document.getElementsByName(`meat_quantity_${entryId}`)[0].value);
-    const vegetarianQuantityInput = checkNull(document.getElementsByName(`vegetarian_quantity_${entryId}`)[0].value);
     const foodGroupInput = checkNull(document.getElementsByName(`food_group_${entryId}`)[0].value);
-    const foodTakeInput = checkNull(document.getElementsByName(`food_take_${entryId}`)[0].value);
 
 	// 製作要發送的資料
     const data = {
         card_id: cardIdInput,
-        date: dateInput,
         employee_id: employeeIdInput,
         employee_name: employeeNameInput,
-        meat_quantity: meatQuantityInput,
-        vegetarian_quantity: vegetarianQuantityInput,
         food_group: foodGroupInput,
-        food_take: foodTakeInput
     };
 
 	// 發送 POST 請求更新資料
-    axios.post(`/api/edit/${entryId}`, data)
+    axios.post(`/api_User/edit/${entryId}`, data)
         .then(response => {
-            console.log('已更新食物資料');
+            console.log('已更新人員資料');
         })
         .catch(error => {
-            console.error('更新食物資料時發生錯誤:', error);
+            console.error('更新人員資料時發生錯誤:', error);
         });
 }
 
@@ -119,38 +83,6 @@ function Updata_OK() {
 }
 
 
-// // ---------舊版的新增行 尚未解決 undefined渲染順序問題---------
-// // 新增一行
-// function addNewRow() {
-//     axios.post('/api/add_new_row')
-//         .then(response => {
-//             console.log('已新增一行:', response.data);
-//             const newRow = createTableRow(response.data.id);  // 創建新行
-//             const tableBody = document.getElementById('table-body');
-//             tableBody.appendChild(newRow);  // 將新行添加到表格
-//         })
-//         .catch(error => {
-//             console.error('新增一行時錯誤:', error);
-//         });
-// }
-// function createTableRow(id) {
-//     const row = document.createElement('tr');
-//     row.innerHTML = `
-//         <td>${id}</td>
-//         <td><input type="text" name="card_id_${id}" value=""></td>
-//         <td><input type="text" name="date_${id}" value=""></td>
-//         <td><input type="text" name="employee_id_${id}" value=""></td>
-//         <td><input type="text" name="employee_name_${id}" value=""></td>
-//         <td><input type="text" name="meat_quantity_${id}" value=""></td>
-//         <td><input type="text" name="vegetarian_quantity_${id}" value=""></td>
-//         <td><input type="text" name="food_group_${id}" value=""></td>
-//         <td><input type="text" name="food_take_${id}" value=""></td>
-//         <td><button onclick="updateFoodData('${id}')">修改</button></td>
-//         <td><button onclick="deleteRow('${id}')">刪除</button></td>
-//     `;
-//     return row;
-// }
-
 // ---------新版的新增行---------
 // 新增一行按鈕 DOM端
 function addNewRow() {
@@ -164,13 +96,9 @@ function addNewRow() {
     newRow.innerHTML = `
         <td class="ID">${newRowId}</td>
         <td><input type="text" name="card_id_${newRowId}" value=""></td>
-        <td><input type="text" name="date_${newRowId}" value=""></td>
         <td><input type="text" name="employee_id_${newRowId}" value=""></td>
         <td><input type="text" name="employee_name_${newRowId}" value=""></td>
-        <td><input type="text" name="meat_quantity_${newRowId}" value=""></td>
-        <td><input type="text" name="vegetarian_quantity_${newRowId}" value=""></td>
         <td><input type="text" name="food_group_${newRowId}" value=""></td>
-        <td><input type="text" name="food_take_${newRowId}" value=""></td>
         <td class="action"><div class="actionBtn"><i class="fa fa-pencil-square-o" aria-hidden="true" onclick="updateFoodData(${newRowId})"></i><i class="fa fa-times-circle-o" aria-hidden="true" onclick="deleteRow(${newRowId})"></i></div></td>
     `;
 
@@ -182,41 +110,33 @@ function addNewRow() {
 // 新增一行按鈕 Post端
 function saveRowData(newRowId) {
     const cardId = null;
-    const date = null;
     const employeeId = null;
     const employeeName = null;
-    const meatQuantity = null;
-    const vegetarianQuantity = null;
     const foodGroup = null;
-    const foodTake = null;
 
     const data = {
         card_id: cardId,
-        date: date,
         employee_id: employeeId,
         employee_name: employeeName,
-        meat_quantity: meatQuantity,
-        vegetarian_quantity: vegetarianQuantity,
         food_group: foodGroup,
-        food_take: foodTake
     };
 
-    axios.post(`/api/add_new_row`, data)
+    axios.post(`/api_User/add_new_row`, data)
         .then(response => {
             nextInput() // 刷新 換行Input
-            console.log('已新增食物資料');
+            console.log('已新增人員資料');
         })
         .catch(error => {
-            console.error('新增食物資料時發生錯誤:', error);
+            console.error('新增人員資料時發生錯誤:', error);
         });
 }
 
 
 function deleteRow(entryId) {
     // 發送 DELETE 請求以刪除行
-    axios.delete(`/api/delete/${entryId}`)
+    axios.delete(`/api_User/delete/${entryId}`)
         .then(response => {
-            console.log('已刪除食物資料');
+            console.log('已刪除人員資料');
             // 刪除對應的DOM元素
             const rowToRemove = document.getElementById(`row-${entryId}`);
             if (rowToRemove) {
@@ -226,7 +146,7 @@ function deleteRow(entryId) {
             }
         })
         .catch(error => {
-            console.error('刪除食物資料時發生錯誤:', error);
+            console.error('刪除人員資料時發生錯誤:', error);
         });
 }
 

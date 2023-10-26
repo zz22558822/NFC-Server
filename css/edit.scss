@@ -19,7 +19,42 @@ body {
   color: #636363;
   font-family: 'Lato', sans-serif;
   line-height: 1.5;
+  .swal2-container{
+    transform: scale(1.4)
+  }
+
+  // 進度條樣式
+&::-webkit-scrollbar {
+  width: 8px;
+
+  &-track {
+    background: #333;
+  }
+
+  &-thumb {
+    background: #888;
+    border-radius: 4px;
+  }
 }
+// Microsoft Edge 進度條樣式
+&::-ms-scrollbar {
+  width: 8px;
+
+  &-track {
+    background: #333;
+  }
+
+  &-thumb {
+    background: #888;
+    border-radius: 4px;
+  }
+}
+// Firefox 進度條樣式
+& {
+  scrollbar-color: #888 #333;
+}
+}
+
 
 #page {
   padding: 50px 100px;
@@ -46,7 +81,7 @@ h1 {
   font-size: 3rem;
   font-weight: 700;
   letter-spacing: -0.01em;
-  margin-bottom: 0.75em;
+  margin-top: 0.25em;
   text-transform: uppercase;
   text-align: center;
 }
@@ -156,17 +191,24 @@ table .ID {
 
 // 表格標題
 table th {
+  font-weight: bold;
   background: #56a2cf;
   color: #ffffff;
   text-transform: uppercase;
   font-size: 1.3em;
   text-align: center;
+  user-select:none;
+  &.ID{
+    font-size: 1.3em;
+  }
 }
 
 // 表格文字
 table tr td {
   background: #eaf3f5;
   color: #999999;
+  vertical-align: middle;
+  user-select:none;
 }
 
 // 表格輸入框
@@ -183,7 +225,7 @@ table tr input {
     // outline: none;
   }
   &:focus,&:focus-visible,&:focus-within{
-
+    outline: 2px solid #ff5733;
     border-radius: 5px;
   }
   
@@ -192,26 +234,54 @@ table tr input {
 // 動作按鈕
 table tr .action{
   white-space:nowrap;
+  vertical-align: middle;
+  min-width: 115px;
+  .actionBtn{
+    display: flex;
+    justify-content: space-evenly;
+  }
 }
 table tr td i {
-  margin: 8px 10px 0 0;
   font-size: 30px;
   transition: all 0.2s;
   &:hover{
     color: #00DD00;
   }
-  &.fa-times-circle-o:hover{
-    color: red;
+  &.fa-times-circle-o{
+    margin-left: 0;
+    &:hover{
+      color: red;
+    }
   }
 }
 
-.btn{
-  font-weight: bold;
-  display: inline-block;
-  text-align: center;
-  padding: 10px;
-  width: 120px;
-  transition: all 0.2s;
+.btns{
+  display: flex;
+  justify-content: right;
+
+  position: absolute;
+  top: 2%;
+  right: 0;
+
+  .btn{
+    font-size: 20px;
+    font-weight: bold;
+    display: inline-block;
+    text-align: center;
+    padding: 4px 10px;
+    margin-right: 20px;
+    width: 120px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    user-select:none;
+    transition: all 0.2s;
+  
+    &:hover{
+      background: #5b8e8d;
+      color: #e4ebeb;
+    }
+  }
+
 }
 
 

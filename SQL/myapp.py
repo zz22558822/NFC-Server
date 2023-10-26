@@ -3,7 +3,8 @@ import sqlite3
 
 app = Flask(__name__)
 
-SQL = 'database_Test.db'
+SQL = 'database.db'
+UserSQL = 'database_User.db'
 
 
 @app.route('/')
@@ -13,6 +14,10 @@ def index():
 @app.route('/edit')
 def edit_form():
     return render_template('edit.html')
+
+@app.route('/user')
+def user_form():
+    return render_template('user.html')
 
 # 定義一個  api 路由
 @app.route('/api', methods=['GET'])
@@ -150,8 +155,38 @@ def update_food_take():
     return jsonify({"message": "已更新food_take"})
 
 
+# 查詢相同群組的人員
+@app.route('/api/get_group_members/<string:food_group>', methods=['GET'])
+def get_group_members(food_group):
+    # 連接到數據庫
+    conn = sqlite3.connect(SQL)
+    cursor = conn.cursor()
+
+    # 使用相同的食品組別查詢人員
+    cursor.execute("SELECT * FROM food_entries WHERE food_group = ?", (food_group,))
+    group_members = cursor.fetchall()
+
+    # 關閉數據庫連接
+    conn.close()
+
+    # 將查詢結果轉化為JSON並返回給前端
+    response = [{"id": row[0],  # 第一列是ID
+                 "date": row[1],  # 第二列是日期
+                 "employee_id": row[2],  # 第三列是員工ID
+                 "employee_name": row[3],  # 第四列是員工名稱
+                 "card_id": row[4],  # 第五列是卡ID
+                 "meat_quantity": row[5],  # 第六列是肉類數量
+                 "vegetarian_quantity": row[6],  # 第七列是素食數量
+                 "food_group": row[7],  # 第八列是食品組別
+                 "food_take": row[8]}  # 第九列是食品是否拿走
+                for row in group_members]
+
+    return jsonify(response)
 
 
+
+
+# -----------------------(edit頁面 Flask)-----------------------
 
 # 預覽拿取食物並寫入 全部
 @app.route('/api/edit/<int:id>', methods=['POST'])
@@ -227,6 +262,102 @@ def delete_food_data(id):
 
 
 
+# -----------------------(User頁面 Flask)-----------------------
+
+# 定義一個  api_User 路由 用於人員資料表
+@app.route('/api_User', methods=['GET'])
+def get_user_data():
+    # 連接到數據庫
+    conn = sqlite3.connect(UserSQL)  # 這邊須定義 數據庫的名稱
+    cursor = conn.cursor()
+
+    # 查詢所有資料
+    cursor.execute("SELECT * FROM user_data")
+    entries = cursor.fetchall()
+
+    # 關閉數據庫連接
+    conn.close()
+
+    # 將查詢結果轉化為JSON並返回給前端
+    response = [{"id": row[0],  # 第一列是ID
+                 "employee_id": row[1],  # 第二列是員工ID
+                 "employee_name": row[2],  # 第三列是員工名稱
+                 "card_id": row[3],  # 第四列是卡ID
+                 "food_group": row[4]}  # 第五列是食品組別
+                for row in entries]  # 對於查詢結果的每一行，創建一個字典並添加到列表中
+
+    return jsonify(response)  # 將字典轉化為JSON格式並返回給客戶端
+
+
+
+# 預覽拿取食物並寫入 全部
+@app.route('/api_User/edit/<int:id>', methods=['POST'])
+def update_user_data(id):
+    # 獲取表單提交的食物資料
+    card_id = request.json.get('card_id')
+    employee_id = request.json.get('employee_id')
+    employee_name = request.json.get('employee_name')
+    food_group = request.json.get('food_group')
+
+    # 連接到數據庫
+    conn = sqlite3.connect(UserSQL)
+    cursor = conn.cursor()
+
+    # 更新指定ID的食物資料
+    cursor.execute("UPDATE user_data SET card_id = ?, employee_id = ?, "
+                   "employee_name = ?, food_group = ? WHERE id = ?",
+                   (card_id, employee_id, employee_name, food_group, id))
+    conn.commit()
+
+    # 關閉數據庫連接
+    conn.close()
+
+    return jsonify({"message": "已更新人員資料"})
+
+
+
+# 新增一行
+@app.route('/api_User/add_new_row', methods=['POST'])
+def add_user_row():
+    # 連接到數據庫
+    conn = sqlite3.connect(UserSQL)
+    cursor = conn.cursor()
+
+    # 獲取最大ID並加1
+    cursor.execute("SELECT MAX(id) FROM user_data")
+    max_id = cursor.fetchone()[0] or 0  # 獲取最大ID，如果為None則設為0
+    new_id = max_id + 1
+
+    # 插入新數據
+    cursor.execute("INSERT INTO user_data (id) VALUES (?)", (new_id,))
+    conn.commit()
+
+    # 關閉數據庫連接
+    conn.close()
+
+    return jsonify({"message": "已新增一行數據"})
+
+
+
+# 刪除指定行
+@app.route('/api_User/delete/<int:id>', methods=['DELETE'])
+def delete_user_data(id):
+    # 连接到数据库
+    conn = sqlite3.connect(UserSQL)
+    cursor = conn.cursor()
+
+    # 删除指定ID的食物数据
+    cursor.execute("DELETE FROM user_data WHERE id = ?", (id,))
+    conn.commit()
+
+    # 关闭数据库连接
+    conn.close()
+
+    return jsonify({"message": "已删除人員資料"})
+
+
+
 # 主程序，確保當文件被直接運行時啟動Flask應用程序
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
+

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+  <head>
+    <meta charset="UTF-8">
+    <title>編輯人員資料</title>
+
+    <link rel="icon" href="images/Database.png">
+
+    <meta name="color-scheme" content="light dark">
+    <meta name="author" content="chek">
+    <meta name="copyright" content="chek">
+    <meta name="generator" content="chek">
+    <meta name="description" content="NFC">
+    <meta name="keywords" content="NFC,Web NFC,NFC Test,Test">
+
+    <meta property="og:title" content="編輯人員資料">
+    <meta property="og:description" content="編輯人員">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="#">
+    <meta property="og:image" href="images/Database.png">
+    <link href="images/Database.png" rel="apple-touch-icon" />
+
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/sweetalert2.min.css" />
+    <link rel="stylesheet" href="./css/user.css">
+</head>
+<body>
+    <h1>編輯人員</h1>
+    <!-- <button onclick="updateAllFoodData()">更新全部</button>
+    <button onclick="addNewRow()">新增資料</button> -->
+	<div class="btns">
+		<a class="btn updataAll" onclick="updateAllFoodData()">更新全部</a>
+		<a class="btn addData" onclick="addNewRow()">新增資料</a>
+	</div>
+    <table border="1">
+        <thead>
+            <tr>
+                <th class="ID">ID</th>
+                <th>卡號</th>
+                <th>員工ID</th>
+                <th>員工名稱</th>
+                <th>領餐群組</th>
+                <th class="action">動作</th>
+            </tr>
+        </thead>
+
+        <!-- 渲染用 -->
+        <tbody id="table-body"></tbody>
+
+    </table>
+
+
+
+    <!-- JS載入 -->
+    <script src="js/Axios_1.5.0.js"></script>
+    <script src="js/sweetalert2.all.min.js"></script>
+    <script src="js/53fb2c75c6.js" crossorigin="anonymous"></script>
+	<script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/user.js"></script>
+</body>
+</html>

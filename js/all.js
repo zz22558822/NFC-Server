@@ -7,6 +7,11 @@ let vNum
 // 葷 素 已拿取
 let mNumTake
 let vNumTake
+// 領餐卡名稱 工號 葷 素 拿取數
+let nameGroup
+let idGroup
+let mGroup = 0
+let vGroup = 0
 
 
 // 宣告輸入框位置
@@ -97,47 +102,94 @@ function Run() {
 	
 	// 清空以輸入的值
 	cradInput.value = '';
+	
 }
 
 // 將輸入者的資訊 新增到 nowItem
-function addNow() {
+function addNow(index) {
+
+	// 如果 index 未定義或為 null，設定為 0，並執行單人刷卡
+	if (typeof index === 'undefined' || index === null) {
+		index = 0;
+
+		const newDuv = `
+			<!-- 員工資訊 -->
+			<div class="personnel">
+				<!-- 工號 -->
+				<div class="num box">
+					<p>${dataSolo[index].employee_id}</p>
+				</div>
+				<!-- 名稱 -->
+				<div class="name box">
+					<p>${dataSolo[index].employee_name}</p>
+				</div>
+				</div>
+				<!-- 食物資訊 -->
+				<div class="food">
+				<!-- 葷食 -->
+				<div class="food_meat box">
+					<img src=".//images/meat.svg" draggable="false" alt="meat">
+					<p>×</p>
+					<p>${dataSolo[index].meat_quantity === null || dataSolo[index].meat_quantity === 'null' ? 0 : dataSolo[index].meat_quantity}</p>
+				</div>
+				<!-- 素食 -->
+				<div class="food_vegan box">
+					<img src=".//images/vegan.svg" draggable="false" alt="meat">
+					<p>×</p>
+					<p>${dataSolo[index].vegetarian_quantity === null || dataSolo[index].vegetarian_quantity === 'null' ? 0 : dataSolo[index].vegetarian_quantity}</p>
+				</div>
+			</div>
+		`
+		const infoBox = document.querySelector('.nowItem');
+		infoBox.innerHTML = newDuv
 	
-	const newDuv = `
-		<!-- 員工資訊 -->
-		<div class="personnel">
-			<!-- 工號 -->
-			<div class="num box">
-				<p>${dataSolo[0].employee_id}</p>
+	} else {
+
+		const newDuv = `
+			<!-- 員工資訊 -->
+			<div class="personnel">
+				<!-- 工號 -->
+				<div class="num box">
+					<p>${idGroup}</p>
+				</div>
+				<!-- 名稱 -->
+				<div class="name box">
+					<p>${nameGroup}</p>
+				</div>
+				</div>
+				<!-- 食物資訊 -->
+				<div class="food">
+				<!-- 葷食 -->
+				<div class="food_meat box">
+					<img src=".//images/meat.svg" draggable="false" alt="meat">
+					<p>×</p>
+					<p>${dataSolo[index].meat_quantity === null || dataSolo[index].meat_quantity === 'null' ? 0 : mGroup}</p>
+				</div>
+				<!-- 素食 -->
+				<div class="food_vegan box">
+					<img src=".//images/vegan.svg" draggable="false" alt="meat">
+					<p>×</p>
+					<p>${dataSolo[index].vegetarian_quantity === null || dataSolo[index].vegetarian_quantity === 'null' ? 0 : vGroup}</p>
+				</div>
 			</div>
-			<!-- 名稱 -->
-			<div class="name box">
-				<p>${dataSolo[0].employee_name}</p>
-			</div>
-			</div>
-			<!-- 食物資訊 -->
-			<div class="food">
-			<!-- 葷食 -->
-			<div class="food_meat box">
-				<img src=".//images/meat.svg" draggable="false" alt="meat">
-				<p>×</p>
-				<p>${dataSolo[0].meat_quantity === null || dataSolo[0].meat_quantity === 'null' ? 0 : dataSolo[0].meat_quantity}</p>
-			</div>
-			<!-- 素食 -->
-			<div class="food_vegan box">
-				<img src=".//images/vegan.svg" draggable="false" alt="meat">
-				<p>×</p>
-				<p>${dataSolo[0].vegetarian_quantity === null || dataSolo[0].vegetarian_quantity === 'null' ? 0 : dataSolo[0].vegetarian_quantity}</p>
-			</div>
-		</div>
-	`
-	const infoBox = document.querySelector('.nowItem');
-	infoBox.innerHTML = newDuv
+		`
+		const infoBox = document.querySelector('.nowItem');
+		infoBox.innerHTML = newDuv
+
+	}
+	
+
 
 }
 
 
 // 將目前資訊新增到 ItemList 當中
-function addItme() {
+function addItme(index) {
+
+  // 如果 index 未定義或為 null，設定為 0
+  if (typeof index === 'undefined' || index === null) {
+	index = 0;
+  }
 
   const newDiv = `
     <div class="item">
@@ -145,11 +197,11 @@ function addItme() {
       <div class="personnel">
         <!-- 工號 -->
         <div class="num">
-          <p>${dataSolo[0].employee_id}</p>
+          <p>${dataSolo[index].employee_id}</p>
         </div>
         <!-- 名稱 -->
         <div class="name">
-          <p>${dataSolo[0].employee_name}</p>
+          <p>${dataSolo[index].employee_name}</p>
         </div>
       </div>
       <!-- 食物資訊 -->
@@ -158,13 +210,13 @@ function addItme() {
         <div class="food_meat">
           <img src="./images/meat.svg" draggable="false" alt="meat">
           <p>×</p>
-          <p>${dataSolo[0].meat_quantity === null || dataSolo[0].meat_quantity === 'null' ? 0 : dataSolo[0].meat_quantity}</p>
+          <p>${dataSolo[index].meat_quantity === null || dataSolo[index].meat_quantity === 'null' ? 0 : dataSolo[index].meat_quantity}</p>
         </div>
         <!-- 素食 -->
         <div class="food_vegan">
           <img src="./images/vegan.svg" draggable="false" alt="meat">
           <p>×</p>
-          <p>${dataSolo[0].vegetarian_quantity === null || dataSolo[0].vegetarian_quantity === 'null' ? 0 : dataSolo[0].vegetarian_quantity}</p>
+          <p>${dataSolo[index].vegetarian_quantity === null || dataSolo[index].vegetarian_quantity === 'null' ? 0 : dataSolo[index].vegetarian_quantity}</p>
         </div>
       </div>
     </div>
@@ -439,6 +491,8 @@ async function init() {
 
 	// 更新圖表
 	addItmeUpdata()
+
+	console.log('—————————————————————————————————————————————————————————————————————————————————————————');
 }
 
 init();
@@ -509,6 +563,161 @@ function getOneData(name) {
 }
 
 
+
+
+// 讀取特定人員的資料 並執行寫入刷卡 群組版   ***********非同步問題待查
+function getOneData(name) {
+    return new Promise((resolve) => {
+        axios.get(`/api/search?search=${name}`)
+            .then(function (response) {
+                let foundData = response.data;
+                if (foundData.length > 0) {
+                    console.log('符合的資料:', foundData);
+
+                    if (foundData[0].food_group) {
+						// 判斷是否已領餐
+						if (foundData[0].food_take == "" || foundData[0].food_take == null) {
+							// 如果有群組信息，則调用get_group_members
+							getGroupMembers(foundData[0].food_group).then((groupMembers) => {
+								console.log('相同群組的人員:', groupMembers);
+
+								// 寫入刷卡人員的名稱
+								nameGroup = JSON.parse(JSON.stringify(foundData[0].employee_name))
+								idGroup = JSON.parse(JSON.stringify(foundData[0].employee_id))
+								// 計算群組拿取的總數
+								for (let i = 0; i < groupMembers.length; i++) {
+									mGroup += parseInt(groupMembers[i].meat_quantity === null || groupMembers[i].meat_quantity === 'null' ? 0 : groupMembers[i].meat_quantity)
+									vGroup += parseInt(groupMembers[i].vegetarian_quantity === null || groupMembers[i].vegetarian_quantity === 'null' ? 0 : groupMembers[i].vegetarian_quantity)
+								}
+
+								// 使用 Promise.all 來等待所有人員處理完成
+								const promises = groupMembers.map((member) => {
+									if (member.food_take == "" || member.food_take == null) {
+										// 成功的運行步驟
+										return submitFoodTake(member.id);
+									} else {
+										// 餐點已領取
+										return Promise.resolve(); // 返回一個已解析的Promise
+									}
+								});
+
+								// 使用 Promise.all 來等待所有Promise完成
+								Promise.all(promises).then(() => {
+									dataSolo = JSON.parse(JSON.stringify(groupMembers)); // 深層複製
+									for (let i = 0; i < dataSolo.length; i++) {
+										addNow(i); // 寫入到右側上方欄位 並顯示
+									}
+									for (let i = 0; i < dataSolo.length; i++) {
+										addItme(i); // 寫入到右側下方欄位 並顯示
+									}
+
+									// 重新讀取已領取數量
+									getTakeTotal().then(() => {
+										// 更新圖表數據
+										updateChart(meat, mNumTake, mNum); // 更新葷食圖表數據
+										updateChart(vegan, vNumTake, vNum); // 更新素食圖表數據
+									});
+									
+
+									sweetalert_OK(); // 顯示領餐成功
+
+									// 重新讀取已領取數量
+									getTakeTotal().then(() => {
+										// 更新圖表數據
+										updateChart(meat, mNumTake, mNum); // 更新葷食圖表數據
+										updateChart(vegan, vNumTake, vNum); // 更新素食圖表數據
+										console.log('—————————————————————————————————————————————————————————————————————————————————————————');
+
+									});
+
+								}).catch((error) => {
+									console.error('處理相同群組人員时发生錯誤:', error);
+								});
+							}).catch((error) => {
+								console.error('查詢相同群組人員时发生錯誤:', error);
+							});
+						} else {
+							// 餐點已領取
+							sweetalert_repeat();
+						}
+
+                    } else {
+                        dataSolo = foundData;
+                        if (dataSolo[0].food_take == "" || dataSolo[0].food_take == null) {
+                            // 成功的運行步驟
+                            submitFoodTake(dataSolo[0].id);
+                            addNow(); // 寫入到右側上方欄位 並顯示
+                            addItme(); // 寫入到右側下方欄位 並顯示
+
+                            // 重新讀取已領取數量
+                            getTakeTotal().then(() => {
+                                // 更新圖表數據
+                                updateChart(meat, mNumTake, mNum); // 更新葷食圖表數據
+                                updateChart(vegan, vNumTake, vNum); // 更新素食圖表數據
+                            });
+							
+
+                            sweetalert_OK(); // 顯示領餐成功
+
+							// 重新讀取已領取數量
+                            getTakeTotal().then(() => {
+                                // 更新圖表數據
+                                updateChart(meat, mNumTake, mNum); // 更新葷食圖表數據
+                                updateChart(vegan, vNumTake, vNum); // 更新素食圖表數據
+								console.log('—————————————————————————————————————————————————————————————————————————————————————————');
+                            });
+
+                        } else {
+                            // 餐點已領取
+                            sweetalert_repeat();
+                        }
+                    }
+
+                } else {
+                    console.log('找不到符合的資料');
+                    sweetalert_error();
+                }
+
+                resolve(foundData);
+            })
+            .catch(function (error) {
+                console.error('搜尋資料时發生錯誤: ', error);
+            });
+    });
+}
+
+
+
+
+
+
+
+
+
+
+// 獲取相同群組的人員
+function getGroupMembers(foodGroup) {
+    return new Promise((resolve, reject) => {
+        axios.get(`/api/get_group_members/${foodGroup}`)
+            .then(function (response) {
+                const groupMembers = response.data;
+                resolve(groupMembers);
+            })
+            .catch(function (error) {
+                reject(error);
+            });
+    });
+}
+
+
+
+
+
+
+
+
+
+
 // 讀取食物總數資料
 function getTotal() {
     return new Promise((resolve) => {
@@ -556,7 +765,7 @@ function submitFoodTake(entryId) {
     // 發送 POST 請求更新food_take
     axios.post(`/api/update_food_take`, data)
         .then(response => {
-            console.log('已更新food_take:', response.data);
+            //console.log('已更新food_take:', response.data);
         })
         .catch(error => {
             console.error('更新food_take時發生錯誤:', error);

@@ -1,224 +1,61 @@
-@charset "UTF-8";
+@import 'reset';
+@import './mixin/RWD';
 @import 'edit_Fonts.css';
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
-}
 
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
-  display: block;
-}
-
-body {
-  line-height: 1;
-}
-
-ol, ul {
-  list-style: none;
-}
-
-blockquote, q {
-  quotes: none;
-}
-
-blockquote:before, blockquote:after,
-q:before, q:after {
-  content: "";
-  content: none;
-}
-
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-
-/* 讓圖片自適應容器最大寬度 高度自動 */
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-/* 全域設定 border box */
-*, *::before, *::after {
-  box-sizing: border-box;
-}
-
-/*---------------------------------------*/
-/* Pure 開始*/
-/* button核心 */
-.pure-button {
-  /* Structure */
-  display: inline-block;
-  line-height: normal;
-  white-space: nowrap;
-  vertical-align: middle;
-  text-align: center;
-  cursor: pointer;
-  -webkit-user-drag: none;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
-  box-sizing: border-box;
-}
-
-/* Firefox: Get rid of the inner focus border */
-.pure-button::-moz-focus-inner {
-  padding: 0;
-  border: 0;
-}
-
-/* Inherit .pure-g styles */
-.pure-button-group {
-  letter-spacing: -0.31em; /* Webkit: collapse white-space between units */
-  text-rendering: optimizespeed; /* Webkit: fixes text-rendering: optimizeLegibility */
-}
-
-.opera-only :-o-prefocus,
-.pure-button-group {
-  word-spacing: -0.43em;
-}
-
-.pure-button-group .pure-button {
-  letter-spacing: normal;
-  word-spacing: normal;
-  vertical-align: top;
-  text-rendering: auto;
-}
-
-/* button子模組 */
-/*csslint outline-none:false*/
-.pure-button {
-  font-family: inherit;
-  font-size: 100%;
-  padding: 0.5em 1em;
-  color: rgba(0, 0, 0, 0.8);
-  border: none rgba(0, 0, 0, 0);
-  background-color: #E6E6E6;
-  text-decoration: none;
-  border-radius: 2px;
-}
-
-.pure-button-hover,
-.pure-button:hover,
-.pure-button:focus {
-  background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 40%, rgba(0, 0, 0, 0.1));
-}
-
-.pure-button:focus {
-  outline: 0;
-}
-
-.pure-button-active,
-.pure-button:active {
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset, 0 0 6px rgba(0, 0, 0, 0.2) inset;
-  border-color: #000;
-}
-
-.pure-button[disabled],
-.pure-button-disabled,
-.pure-button-disabled:hover,
-.pure-button-disabled:focus,
-.pure-button-disabled:active {
-  border: none;
-  background-image: none;
-  opacity: 0.4;
-  cursor: not-allowed;
-  box-shadow: none;
-  pointer-events: none;
-}
-
-.pure-button-hidden {
-  display: none;
-}
-
-.pure-button-primary,
-.pure-button-selected,
-a.pure-button-primary,
-a.pure-button-selected {
-  background-color: rgb(0, 120, 231);
-  color: #fff;
-}
-
-/* Button Groups */
-.pure-button-group .pure-button {
-  margin: 0;
-  border-radius: 0;
-  border-right: 1px solid rgba(0, 0, 0, 0.2);
-}
-
-.pure-button-group .pure-button:first-child {
-  border-top-left-radius: 2px;
-  border-bottom-left-radius: 2px;
-}
-
-.pure-button-group .pure-button:last-child {
-  border-top-right-radius: 2px;
-  border-bottom-right-radius: 2px;
-  border-right: none;
-}
-
-/* Pure 結束 */
-/* RWD用 */
-html, body {
-  font-family: "Helvetica", "Arial", "LiHei Pro", "黑體-繁", "微軟正黑體", sans-serif;
+html,body{
+  font-family: "Helvetica", "Arial","LiHei Pro","黑體-繁","微軟正黑體", sans-serif;
 }
 
 * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
 body {
-  background: #e4ebeb;
+  background: #1F2A38;
   color: #636363;
-  font-family: "Lato", sans-serif;
+  font-family: 'Lato', sans-serif;
   line-height: 1.5;
-}
-body .swal2-container {
-  transform: scale(1.4);
-}
-body::-webkit-scrollbar {
+  .swal2-container{
+    transform: scale(1.4)
+  }
+
+  // 進度條樣式
+&::-webkit-scrollbar {
   width: 8px;
+
+  &-track {
+    background: #333;
+  }
+
+  &-thumb {
+    background: #888;
+    border-radius: 4px;
+  }
 }
-body::-webkit-scrollbar-track {
-  background: #333;
-}
-body::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 4px;
-}
-body::-ms-scrollbar {
+// Microsoft Edge 進度條樣式
+&::-ms-scrollbar {
   width: 8px;
+
+  &-track {
+    background: #333;
+  }
+
+  &-thumb {
+    background: #888;
+    border-radius: 4px;
+  }
 }
-body::-ms-scrollbar-track {
-  background: #333;
-}
-body::-ms-scrollbar-thumb {
-  background: #888;
-  border-radius: 4px;
-}
-body {
+// Firefox 進度條樣式
+& {
   scrollbar-color: #888 #333;
 }
+}
+
+
 
 #page {
   padding: 50px 100px;
@@ -229,13 +66,14 @@ body {
     padding: 50px 30px;
   }
 }
+
 h1,
 h2,
 h3,
 h4,
 h5 {
   line-height: 1.2;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-weight: normal;
 }
 
@@ -254,6 +92,7 @@ h1 {
     font-size: 2.25rem;
   }
 }
+
 h2 {
   color: #82bcba;
   font-size: 1.75rem;
@@ -285,7 +124,7 @@ p {
 }
 
 p.credits {
-  font-size: 0.8125rem;
+  font-size: .8125rem;
   margin-top: 6em;
 }
 
@@ -293,10 +132,12 @@ p.credits {
   .phone-block {
     display: block;
   }
+
   .phone-hide {
     display: none;
   }
 }
+
 code {
   background: #c6d8d8;
   border-radius: 5px;
@@ -310,7 +151,7 @@ code {
 code:after {
   bottom: 5px;
   color: #e4ebeb;
-  font-family: "Lato", sans-serif;
+  font-family: 'Lato', sans-serif;
   font-size: 1rem;
   position: absolute;
   right: 10px;
@@ -318,11 +159,11 @@ code:after {
 }
 
 code.css:after {
-  content: "css";
+  content: 'css';
 }
 
 code.js:after {
-  content: "js";
+  content: 'js';
 }
 
 table {
@@ -337,10 +178,11 @@ table th,
 table td {
   border: none;
   border-bottom: 1px solid #e4ebeb;
-  font-family: "Lato", sans-serif;
-  font-size: 0.875rem;
+  font-family: 'Lato', sans-serif;
+  font-size: .875rem;
 }
 
+// 全域表格推擠 把td 換成 .ID
 table th,
 table .ID {
   padding: 10px 12px;
@@ -348,6 +190,7 @@ table .ID {
   font-size: 16px;
 }
 
+// 表格標題
 table th {
   font-weight: bold;
   background: #56a2cf;
@@ -355,23 +198,21 @@ table th {
   text-transform: uppercase;
   font-size: 1.3em;
   text-align: center;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
-}
-table th.ID {
-  font-size: 1.3em;
+  user-select:none;
+  &.ID{
+    font-size: 1.3em;
+  }
 }
 
+// 表格文字
 table tr td {
   background: #eaf3f5;
   color: #999999;
   vertical-align: middle;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
+  user-select:none;
 }
 
+// 表格輸入框
 table tr input {
   width: 100%;
   min-height: 40px;
@@ -379,65 +220,73 @@ table tr input {
   background: none;
   font-size: 16px;
   text-align: center;
-}
-table tr input:hover, table tr input:focus, table tr input:focus-visible, table tr input:focus-within {
-  border: none;
-}
-table tr input:focus, table tr input:focus-visible, table tr input:focus-within {
-  outline: 2px solid #ff5733;
-  border-radius: 5px;
+
+  &:hover,&:focus,&:focus-visible,&:focus-within{
+    border: none;
+    // outline: none;
+  }
+  &:focus,&:focus-visible,&:focus-within{
+    outline: 2px solid #ff5733;
+    border-radius: 5px;
+  }
+  
 }
 
-table tr .action {
-  white-space: nowrap;
+// 動作按鈕
+table tr .action{
+  white-space:nowrap;
   vertical-align: middle;
+  width: 140px;
   min-width: 115px;
+  .actionBtn{
+    display: flex;
+    justify-content: space-evenly;
+  }
 }
-table tr .action .actionBtn {
-  display: flex;
-  justify-content: space-evenly;
-}
-
 table tr td i {
   font-size: 30px;
   transition: all 0.2s;
-}
-table tr td i:hover {
-  color: #00DD00;
-}
-table tr td i.fa-times-circle-o {
-  margin-left: 0;
-}
-table tr td i.fa-times-circle-o:hover {
-  color: red;
+  &:hover{
+    color: #00DD00;
+  }
+  &.fa-times-circle-o{
+    margin-left: 0;
+    &:hover{
+      color: red;
+    }
+  }
 }
 
-.btns {
+.btns{
   display: flex;
   justify-content: right;
+
   position: absolute;
   top: 2%;
   right: 0;
+
+  .btn{
+    font-size: 20px;
+    font-weight: bold;
+    display: inline-block;
+    text-align: center;
+    padding: 4px 10px;
+    margin-right: 20px;
+    width: 120px;
+    border: 1px solid #e4ebeb;
+    border-radius: 5px;
+    user-select:none;
+    transition: all 0.2s;
+  
+    &:hover{
+      background: #5b8e8d;
+      color: #e4ebeb;
+    }
+  }
+
 }
-.btns .btn {
-  font-size: 20px;
-  font-weight: bold;
-  display: inline-block;
-  text-align: center;
-  padding: 4px 10px;
-  margin-right: 20px;
-  width: 120px;
-  border: 1px solid #333;
-  border-radius: 5px;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
-  transition: all 0.2s;
-}
-.btns .btn:hover {
-  background: #5b8e8d;
-  color: #e4ebeb;
-}
+
+
 
 table tr:nth-of-type(2n+2) td {
   background: #ffffff;
@@ -446,7 +295,7 @@ table tr:nth-of-type(2n+2) td {
 table.bt tfoot th,
 table.bt tfoot td,
 table.bt tbody td {
-  font-size: 0.8125rem;
+  font-size: .8125rem;
   padding: 0;
 }
 
@@ -490,12 +339,12 @@ table.bt tbody td:last-of-type .bt-content {
  */
 .clearfix::before,
 .clearfix::after {
-  content: " ";
-  display: table;
+ content: " ";
+ display: table;
 }
 
 .clearfix::after {
-  clear: both;
+ clear: both;
 }
 
 .col-sm-3 {
@@ -507,6 +356,7 @@ table.bt tbody td:last-of-type .bt-content {
   .col-sm-9 {
     float: left;
   }
+
   .col-sm-3 {
     padding-left: 2em;
     width: 25%;
@@ -515,6 +365,7 @@ table.bt tbody td:last-of-type .bt-content {
     width: 75%;
   }
 }
+
 /*
  * Example 5:
  * Media query over js resize
@@ -523,16 +374,19 @@ table.bt tbody td:last-of-type .bt-content {
   #table-no-resize thead {
     display: none;
   }
+
   #table-no-resize tbody td {
     border: none !important;
     display: block;
-    font-size: 0.8125rem;
+    font-size: .8125rem;
     padding: 0;
     vertical-align: top;
+
     /* IE 9 */
-    float: left\9 ;
-    width: 100% \9 ;
+    float: left\9;
+    width: 100%\9;
   }
+
   #table-no-resize tbody td:before {
     background: #56a2cf;
     content: attr(data-th) ": ";
@@ -543,19 +397,23 @@ table.bt tbody td:last-of-type .bt-content {
     padding: 2px 10px;
     width: 6.5em;
   }
+
   #table-no-resize tbody td .bt-content {
     display: inline-block;
     padding: 2px 5px;
   }
+
   #table-no-resize tbody td:first-of-type:before,
   #table-no-resize tbody td:first-of-type .bt-content {
     padding-top: 10px;
   }
+
   #table-no-resize tbody td:last-of-type:before,
   #table-no-resize tbody td:last-of-type .bt-content {
     padding-bottom: 10px;
   }
 }
+
 /*
  * Example 6:
  * Two axis styling
@@ -571,13 +429,16 @@ table.two-axis tr td:first-of-type {
     background: #3584b3;
     color: #ffffff;
   }
+
   table.two-axis tr td:first-of-type {
     border-bottom: 1px solid #e4ebeb;
   }
+
   table.two-axis tr td:first-of-type:before {
     padding-bottom: 10px;
   }
 }
+
 /*
  * Example 7:
  * Max height
@@ -585,15 +446,14 @@ table.two-axis tr td:first-of-type {
 .bt-wrapper.active {
   margin-top: 1.5em;
 }
-
 .bt-wrapper.active table {
   margin: 0;
 }
 
+
 table {
   width: 100%;
 }
-
 .table {
   margin: 30px 0;
   border-collapse: collapse;
@@ -601,7 +461,6 @@ table {
   empty-cells: show;
   border: 1px solid #e0e0e0;
 }
-
 .table caption {
   color: #333;
   font-style: italic;
@@ -610,7 +469,6 @@ table {
   padding: 1em 0;
   text-align: center;
 }
-
 .table td,
 .table th {
   border-left: 1px solid #e0e0e0;
@@ -621,12 +479,10 @@ table {
   padding: 0.5em 1em;
   font-weight: normal;
 }
-
 .table td:first-child,
 .table th:first-child {
   border-left-width: 0;
 }
-
 .table thead,
 .table tfoot {
   background-color: #f05050;
@@ -634,38 +490,31 @@ table {
   text-align: left;
   vertical-align: bottom;
 }
-
 .table thead td,
 .table tfoot td,
 .table thead th,
 .table tfoot th {
   border-color: #fff;
 }
-
 .table td {
   background-color: transparent;
 }
-
 .table_striped tr:nth-child(2n-1) td {
   background-color: #ececec;
 }
-
 .table_bordered td {
   border-bottom: 1px solid #e0e0e0;
 }
-
 .table_bordered tbody > tr:last-child > td,
 .table_bordered thead > tr:last-child > td {
   border-bottom-width: 0;
 }
-
 .table_horizontal td,
 .table_horizontal th {
   border-width: 0 0 1px 0;
   border-bottom: 1px solid #e0e0e0;
 }
-
 .table_horizontal tbody > tr:last-child > td,
 .table_horizontal thead > tr:last-child > td {
   border-bottom-width: 0;
-}/*# sourceMappingURL=edit.css.map */
+}

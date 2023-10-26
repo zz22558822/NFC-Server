@@ -188,7 +188,7 @@ html, body {
 }
 
 body {
-  background: #e4ebeb;
+  background: #1F2A38;
   color: #636363;
   font-family: "Lato", sans-serif;
   line-height: 1.5;
@@ -391,6 +391,7 @@ table tr input:focus, table tr input:focus-visible, table tr input:focus-within 
 table tr .action {
   white-space: nowrap;
   vertical-align: middle;
+  width: 140px;
   min-width: 115px;
 }
 table tr .action .actionBtn {
@@ -427,7 +428,7 @@ table tr td i.fa-times-circle-o:hover {
   padding: 4px 10px;
   margin-right: 20px;
   width: 120px;
-  border: 1px solid #333;
+  border: 1px solid #e4ebeb;
   border-radius: 5px;
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -668,4 +669,4 @@ table {
 .table_horizontal tbody > tr:last-child > td,
 .table_horizontal thead > tr:last-child > td {
   border-bottom-width: 0;
-}/*# sourceMappingURL=edit.css.map */
+}/*# sourceMappingURL=user.css.map */
