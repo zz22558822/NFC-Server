@@ -1,5 +1,4 @@
 import sqlite3
-import datetime
 
 # 定義資料庫名稱
 SQL = 'database_User.db'
@@ -16,10 +15,10 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS user_data (
                     employee_id TEXT,
                     employee_name TEXT,
                     card_id TEXT,
-                    food_group INTEGER
+                    food_group TEXT
                 )''')
 
-# 插入數據
+# 插入數據 (需要否則無法透過網頁新增)
 data_to_insert = ('T00001', '測試', '0000000001', 'IT')
 cursor.execute(f"INSERT INTO user_data (employee_id, employee_name, card_id, food_group) VALUES (?, ?, ?, ?)",
                data_to_insert)

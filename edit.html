@@ -33,10 +33,11 @@
     <!-- <button onclick="updateAllFoodData()">更新全部</button>
     <button onclick="addNewRow()">新增資料</button> -->
 	<div class="btns">
+        <a class="top-btn"><i class="fas fa-arrow-alt-circle-up"></i></a>
 		<a class="btn updataAll" onclick="updateAllFoodData()">更新全部</a>
 		<a class="btn addData" onclick="addNewRow()">新增資料</a>
 	</div>
-    <!-- <table border="1">
+    <table border="1">
         <thead>
             <tr>
                 <th>ID</th>
@@ -50,121 +51,14 @@
                 <th>已領餐</th>
                 <th>動作</th>
             </tr>
-        </thead> -->
-
-        <!-- 渲染用 -->
-        <!-- <tbody id="table-body"></tbody>
-
-    </table> -->
-
-    <table border="1">
-        <thead>
-            <tr>
-                <th class="ID">ID</th>
-                <th>卡號</th>
-                <th>日期</th>
-                <th>員工ID</th>
-                <th>員工名稱</th>
-                <th>肉類數量</th>
-                <th>素食數量</th>
-                <th>領餐群組</th>
-                <th>已領餐</th>
-                <th class="action">動作</th>
-            </tr>
         </thead>
 
         <!-- 渲染用 -->
-		<tbody id="table-body"><tr id="row-1">
-			<td class="ID">1</td>
-			<td><input type="text" name="card_id_1" value="0000000001" wfd-id="id0"></td>
-			<td><input type="text" name="date_1" value="2023-09-20" wfd-id="id1"></td>
-			<td><input type="text" name="employee_id_1" value="T00001" wfd-id="id2"></td>
-			<td><input type="text" name="employee_name_1" value="張測試" wfd-id="id3"></td>
-			<td><input type="text" name="meat_quantity_1" value="4" wfd-id="id4"></td>
-			<td><input type="text" name="vegetarian_quantity_1" value="1" wfd-id="id5"></td>
-			<td><input type="text" name="food_group_1" value="" wfd-id="id6"></td>
-			<td><input type="text" name="food_take_1" value="2023/9/28 下午5:16:51" wfd-id="id7"></td>
-			<td class="action"><i class="fa fa-pencil-square-o" aria-hidden="true" onclick="updateFoodData('1')"></i><i class="fa fa-times-circle-o" aria-hidden="true" onclick="deleteRow('1')"></i></td>
-        </tr><tr id="row-2">
-			<td class="ID">2</td>
-			<td><input type="text" name="card_id_2" value="0000000002" wfd-id="id8"></td>
-			<td><input type="text" name="date_2" value="2023-09-20" wfd-id="id9"></td>
-			<td><input type="text" name="employee_id_2" value="T00002" wfd-id="id10"></td>
-			<td><input type="text" name="employee_name_2" value="林測試" wfd-id="id11"></td>
-			<td><input type="text" name="meat_quantity_2" value="1" wfd-id="id12"></td>
-			<td><input type="text" name="vegetarian_quantity_2" value="4" wfd-id="id13"></td>
-			<td><input type="text" name="food_group_2" value="" wfd-id="id14"></td>
-			<td><input type="text" name="food_take_2" value="" wfd-id="id15"></td>
-			<td class="action"><i class="fa fa-pencil-square-o" aria-hidden="true" onclick="updateFoodData('2')"></i><i class="fa fa-times-circle-o" aria-hidden="true" onclick="deleteRow('2')"></i></td>
-        </tr><tr id="row-3">
-			<td class="ID">3</td>
-			<td><input type="text" name="card_id_3" value="0000000003" wfd-id="id16"></td>
-			<td><input type="text" name="date_3" value="2023-09-20" wfd-id="id17"></td>
-			<td><input type="text" name="employee_id_3" value="T00003" wfd-id="id18"></td>
-			<td><input type="text" name="employee_name_3" value="陳測試" wfd-id="id19"></td>
-			<td><input type="text" name="meat_quantity_3" value="11" wfd-id="id20"></td>
-			<td><input type="text" name="vegetarian_quantity_3" value="6" wfd-id="id21"></td>
-			<td><input type="text" name="food_group_3" value="" wfd-id="id22"></td>
-			<td><input type="text" name="food_take_3" value="" wfd-id="id23"></td>
-			<td class="action"><i class="fa fa-pencil-square-o" aria-hidden="true" onclick="updateFoodData('3')"></i><i class="fa fa-times-circle-o" aria-hidden="true" onclick="deleteRow('3')"></i></td>
-        </tr><tr id="row-4">
-			<td class="ID">4</td>
-			<td><input type="text" name="card_id_4" value="0000000004" wfd-id="id24"></td>
-			<td><input type="text" name="date_4" value="2023-09-20" wfd-id="id25"></td>
-			<td><input type="text" name="employee_id_4" value="T00004" wfd-id="id26"></td>
-			<td><input type="text" name="employee_name_4" value="李測試" wfd-id="id27"></td>
-			<td><input type="text" name="meat_quantity_4" value="2" wfd-id="id28"></td>
-			<td><input type="text" name="vegetarian_quantity_4" value="5" wfd-id="id29"></td>
-			<td><input type="text" name="food_group_4" value="" wfd-id="id30"></td>
-			<td><input type="text" name="food_take_4" value="" wfd-id="id31"></td>
-			<td class="action"><i class="fa fa-pencil-square-o" aria-hidden="true" onclick="updateFoodData('4')"></i><i class="fa fa-times-circle-o" aria-hidden="true" onclick="deleteRow('4')"></i></td>
-        </tr><tr id="row-5">
-			<td class="ID">5</td>
-			<td><input type="text" name="card_id_5" value="0000000005" wfd-id="id32"></td>
-			<td><input type="text" name="date_5" value="2023-09-20" wfd-id="id33"></td>
-			<td><input type="text" name="employee_id_5" value="T00005" wfd-id="id34"></td>
-			<td><input type="text" name="employee_name_5" value="程測試" wfd-id="id35"></td>
-			<td><input type="text" name="meat_quantity_5" value="" wfd-id="id36"></td>
-			<td><input type="text" name="vegetarian_quantity_5" value="2" wfd-id="id37"></td>
-			<td><input type="text" name="food_group_5" value="" wfd-id="id38"></td>
-			<td><input type="text" name="food_take_5" value="" wfd-id="id39"></td>
-			<td class="action"><i class="fa fa-pencil-square-o" aria-hidden="true" onclick="updateFoodData('5')"></i><i class="fa fa-times-circle-o" aria-hidden="true" onclick="deleteRow('5')"></i></td>
-        </tr><tr id="row-6">
-			<td class="ID">6</td>
-			<td><input type="text" name="card_id_6" value="0724133648" wfd-id="id40"></td>
-			<td><input type="text" name="date_6" value="2023-09-20" wfd-id="id41"></td>
-			<td><input type="text" name="employee_id_6" value="T01708" wfd-id="id42"></td>
-			<td><input type="text" name="employee_name_6" value="張景琳" wfd-id="id43"></td>
-			<td><input type="text" name="meat_quantity_6" value="6" wfd-id="id44"></td>
-			<td><input type="text" name="vegetarian_quantity_6" value="" wfd-id="id45"></td>
-			<td><input type="text" name="food_group_6" value="" wfd-id="id46"></td>
-			<td><input type="text" name="food_take_6" value="" wfd-id="id47"></td>
-			<td class="action"><i class="fa fa-pencil-square-o" aria-hidden="true" onclick="updateFoodData('6')"></i><i class="fa fa-times-circle-o" aria-hidden="true" onclick="deleteRow('6')"></i></td>
-        </tr><tr id="row-7">
-			<td class="ID">7</td>
-			<td><input type="text" name="card_id_7" value="0724497456" wfd-id="id48"></td>
-			<td><input type="text" name="date_7" value="2023-09-20" wfd-id="id49"></td>
-			<td><input type="text" name="employee_id_7" value="T77777" wfd-id="id50"></td>
-			<td><input type="text" name="employee_name_7" value="測試卡" wfd-id="id51"></td>
-			<td><input type="text" name="meat_quantity_7" value="1" wfd-id="id52"></td>
-			<td><input type="text" name="vegetarian_quantity_7" value="2" wfd-id="id53"></td>
-			<td><input type="text" name="food_group_7" value="" wfd-id="id54"></td>
-			<td><input type="text" name="food_take_7" value="" wfd-id="id55"></td>
-			<td class="action"><i class="fa fa-pencil-square-o" aria-hidden="true" onclick="updateFoodData('7')"></i><i class="fa fa-times-circle-o" aria-hidden="true" onclick="deleteRow('7')"></i></td>
-        </tr><tr id="row-8">
-			<td class="ID">8</td>
-			<td><input type="text" name="card_id_8" value="" wfd-id="id56"></td>
-			<td><input type="text" name="date_8" value="" wfd-id="id57"></td>
-			<td><input type="text" name="employee_id_8" value="" wfd-id="id58"></td>
-			<td><input type="text" name="employee_name_8" value="" wfd-id="id59"></td>
-			<td><input type="text" name="meat_quantity_8" value="" wfd-id="id60"></td>
-			<td><input type="text" name="vegetarian_quantity_8" value="" wfd-id="id61"></td>
-			<td><input type="text" name="food_group_8" value="" wfd-id="id62"></td>
-			<td><input type="text" name="food_take_8" value="" wfd-id="id63"></td>
-			<td class="action"><i class="fa fa-pencil-square-o" aria-hidden="true" onclick="updateFoodData('8')"></i><i class="fa fa-times-circle-o" aria-hidden="true" onclick="deleteRow('8')"></i></td>
-        </tr></tbody>
+        <tbody id="table-body"></tbody>
 
     </table>
+
+
 
 
     <!-- JS載入 -->
@@ -175,3 +69,4 @@
     <script src="js/edit.js"></script>
 </body>
 </html>
+

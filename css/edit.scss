@@ -84,6 +84,15 @@ h1 {
   margin-top: 0.25em;
   text-transform: uppercase;
   text-align: center;
+  user-select:none;
+  // 懸浮效果
+  position: fixed;
+  display: block;
+  width: 100%;
+  background: #e4ebeb;
+  border-radius: 10px;
+  margin: 0;
+  top: 0;
 }
 
 @media only screen and (max-width: 568px) {
@@ -198,6 +207,9 @@ table th {
   font-size: 1.3em;
   text-align: center;
   user-select:none;
+  // 懸浮效果
+  position: sticky;
+  top: 58px;
   &.ID{
     font-size: 1.3em;
   }
@@ -263,6 +275,10 @@ table tr td i {
   top: 2%;
   right: 0;
 
+  // 懸浮效果
+  position: fixed;
+  top: 1%;
+
   .btn{
     font-size: 20px;
     font-weight: bold;
@@ -280,6 +296,19 @@ table tr td i {
       background: #5b8e8d;
       color: #e4ebeb;
     }
+  }
+
+  // TOP按鈕
+  .top-btn i{
+    font-size: 250%;
+    color: orange;
+    opacity: 0.6;
+    transition: all 0.5s;
+    margin-right: 20px;
+  }
+  .top-btn i:hover{
+    color: orangered;
+    transition: all 0.5s;
   }
 
 }
@@ -451,6 +480,8 @@ table.two-axis tr td:first-of-type {
 
 table {
   width: 100%;
+  // 懸浮效果
+  margin-top: 58px;
 }
 .table {
   margin: 30px 0;

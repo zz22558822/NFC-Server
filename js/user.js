@@ -170,3 +170,29 @@ function nextInput() {
         });
     });
 }
+
+
+
+// 下載 User 資料
+function downloadDB() {
+    // 創建一個虛擬的<a>標簽
+    let link = document.createElement("a");
+    link.href = "/download/database.db"; // 下載資料庫文件的URL
+    link.download = "database.db"; // 設置下載文件的名稱
+    link.style.display = "none"; // 隱藏鏈接元素
+  
+    // 模擬用戶單擊<a>標簽以觸發下載
+    link.style.display = 'none';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+
+
+// TOP按鈕
+$('.top-btn i').click(function (e) { 
+    e.preventDefault();
+    $('html,body').animate({
+        scrollTop: 0
+    },350);
+});

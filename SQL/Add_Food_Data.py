@@ -23,7 +23,7 @@ cursor.execute(f'''CREATE TABLE IF NOT EXISTS {table_name} (
                     card_id TEXT,
                     meat_quantity INTEGER,
                     vegetarian_quantity INTEGER,
-                    food_group INTEGER,
+                    food_group TEXT,
                     food_take INTEGER
                 )''')
 

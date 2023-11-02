@@ -250,3 +250,12 @@ function nextInput() {
         });
     });
 }
+
+
+// TOP按鈕
+$('.top-btn i').click(function (e) { 
+    e.preventDefault();
+    $('html,body').animate({
+        scrollTop: 0
+    },350);
+});

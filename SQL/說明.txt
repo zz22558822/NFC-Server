@@ -1,0 +1,33 @@
+Add_Food_Data :
+創建領餐資料庫 格式為 food_20231030 後方日期為當日日期
+此檔案基本上初次使用後不會再使用到，通常僅用Add_Excel_Data。
+
+Add_User_Data :
+創建領餐人相關資料庫，如 卡號、群組等等.. 普遍可以使用匯出的方式
+因此此檔案基本上初次使用後不會再使用到。
+
+User_Group :
+每日固定時間(暫定10:18)運行一次，將 database_User 寫入到 database 當中
+※ 需要安裝 pip3 install schedule
+
+User_Group 手動版 :
+如若有異常或是其他需求需要手動帶入資料時可以運行，會將 database_User 寫入到 database 當中
+
+Add_Excel_Data:
+每日固定時間(暫定10:15)運行一次，將 Excel 資料寫入 database 當中
+※ 需要安裝 pip install pandas 、 pip install openpyxl 、 Ubuntu 還需安裝 pip install pysmb
+※ 創建掛接點 sudo mkdir /mnt/smb_mount
+※ 連結掛接點 sudo mount -t cifs -o username=aurora,password=C;4%p4@;4 //172.16.1.18/fs /mnt/smb_mount
+
+Add_Excel_Data 手動版 :
+如若有異常或是其他需求需要手動帶入資料時可以運行，會將 Excel 資料寫入 database 當中
+
+
+myapp.py :
+後端Flask主要程序。
+
+
+database_User.db :
+人員資料庫存放位置。
+
+如若需要更改以往 database 需要手動使用 SQLite 去做開啟動作
