@@ -56,7 +56,6 @@ body {
 }
 
 
-
 #page {
   padding: 50px 100px;
 }
@@ -91,7 +90,6 @@ h1 {
   display: block;
   width: 100%;
   background: #1F2A38;
-  border-radius: 10px;
   margin: 0;
   top: 0;
 }
@@ -210,6 +208,7 @@ table th {
   user-select:none;
   // 懸浮效果
   position: sticky;
+  top: 58px;
   &.ID{
     font-size: 1.3em;
   }

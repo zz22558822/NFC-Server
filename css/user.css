@@ -254,7 +254,6 @@ h1 {
   display: block;
   width: 100%;
   background: #1F2A38;
-  border-radius: 10px;
   margin: 0;
   top: 0;
 }
@@ -369,6 +368,7 @@ table th {
      -moz-user-select: none;
           user-select: none;
   position: sticky;
+  top: 58px;
 }
 table th.ID {
   font-size: 1.3em;
