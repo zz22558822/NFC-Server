@@ -4,10 +4,14 @@ import sqlite3
 import platform
 import schedule
 import time
+import os
+
+# 程式名稱
+program_name, _ = os.path.splitext(os.path.basename(__file__))
 
 # 在程式開始時顯示提示
 now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-print(f"{now} - 程式已開始運行")
+print(f"{now} - {program_name}已開始運行")
 
 # 讀取資訊主程序
 def Run():
@@ -56,6 +60,10 @@ def Run():
             # 跳過標題開關 否則會出錯
             if is_header:
                 is_header = False  # 第一行是標題行，跳過它
+                continue
+
+            # 如果對象為訪客 則跳過
+            if row[1] == "T99999" or row[2] == "訪客":
                 continue
 
             # 工號帶入變數

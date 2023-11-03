@@ -2,11 +2,14 @@ import sqlite3
 import datetime
 import schedule
 import time
+import os
 
+# 程式名稱
+program_name, _ = os.path.splitext(os.path.basename(__file__))
 
 # 在程式開始時顯示提示
 now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-print(f"{now} - 程式已開始運行")
+print(f"{now} - {program_name}已開始運行")
 
 # 寫入資訊主程序
 def Run():

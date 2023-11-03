@@ -15,12 +15,18 @@ User_Group 手動版 :
 
 Add_Excel_Data:
 每日固定時間(暫定10:15)運行一次，將 Excel 資料寫入 database 當中
-※ 需要安裝 pip install pandas 、 pip install openpyxl 、 Ubuntu 還需安裝 pip install pysmb
+※ 需要安裝 pip install schedule 、 pip install openpyxl 、 Ubuntu 不掛載SMB的話還需安裝 pip install pysmb
 ※ 創建掛接點 sudo mkdir /mnt/smb_mount
 ※ 連結掛接點 sudo mount -t cifs -o username=aurora,password=C;4%p4@;4 //172.16.1.18/fs /mnt/smb_mount
 
 Add_Excel_Data 手動版 :
 如若有異常或是其他需求需要手動帶入資料時可以運行，會將 Excel 資料寫入 database 當中
+
+Backup_SQL.py:
+每個月 1號自動備份當下領餐資料庫的資料到 Backup 資料夾當中 並重新命名 
+
+Backup_SQL 手動版.py
+立即備份當下領餐資料庫的資料到 Backup 資料夾當中 並重新命名(名稱採取備份前一個月)
 
 
 myapp.py :
@@ -29,5 +35,13 @@ myapp.py :
 
 database_User.db :
 人員資料庫存放位置。
+
+
+Run_Auto.sh :
+Lunix 自動運行腳本 一鍵開啟 Add_Excel_Data、User_Group、Backup_SQL、myapp
+運行右鍵 > 以程式執行(R) 即可開啟
+※ 架設前權限 sudo chmod +x Run_Auto.sh
+
+
 
 如若需要更改以往 database 需要手動使用 SQLite 去做開啟動作

@@ -50,6 +50,10 @@ try:
             is_header = False  # 第一行是標題行，跳過它
             continue
 
+        # 如果對象為訪客 則跳過
+        if row[1] == "T99999" or row[2] == "訪客":
+            continue
+
         # 工號帶入變數
         employee_id = row[1]
         # 名字帶入變數
