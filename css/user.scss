@@ -85,6 +85,8 @@ h1 {
   text-transform: uppercase;
   text-align: center;
   user-select:none;
+  height: 58px;
+  outline: 2px solid #56a2cf;
   // 懸浮效果
   position: fixed;
   display: block;
@@ -94,11 +96,6 @@ h1 {
   top: 0;
 }
 
-@media only screen and (max-width: 568px) {
-  h1 {
-    font-size: 2.25rem;
-  }
-}
 
 h2 {
   color: #82bcba;
@@ -206,6 +203,7 @@ table th {
   font-size: 1.3em;
   text-align: center;
   user-select:none;
+  white-space: nowrap;
   // 懸浮效果
   position: sticky;
   top: 58px;

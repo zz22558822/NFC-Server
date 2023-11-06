@@ -8,6 +8,10 @@ window.onload = function() {
 			populateTable(entries);
             nextInput() // 刷新 換行Input
 		})
+        .then(() => {
+            handleArrowKeys(); // 方向鍵焦點移動
+            //handleCtrlArrowKeys(); // Ctrl + 方向鍵焦點移動
+        })
 		.catch(error => console.error('錯誤:', error));
 };
 
@@ -206,6 +210,9 @@ function saveRowData(newRowId) {
             nextInput() // 刷新 換行Input
             console.log('已新增食物資料');
         })
+        .then(() => {
+            updataArrowKeys(); // 刷新焦點
+        })
         .catch(error => {
             console.error('新增食物資料時發生錯誤:', error);
         });
@@ -259,3 +266,104 @@ $('.top-btn i').click(function (e) {
         scrollTop: 0
     },350);
 });
+
+
+// 新增資料時刷新表格焦點
+function updataArrowKeys() {
+    let cells = document.querySelectorAll("input");
+    // 設置初始焦點
+    cells[cells.length - 1].focus();
+    cells[cells.length - 1].blur();
+
+    // 純方向鍵
+    cells.forEach((cell, index) => {
+        cell.addEventListener("keydown", (e) => {
+            if (e.key === "ArrowRight" && index < cells.length - 1) {
+                cells[index + 1].focus();
+            } else if (e.key === "ArrowLeft" && index > 0) {
+                cells[index - 1].focus();
+            } else if (e.key === "ArrowDown") {
+                // 修改為觸發"下+右"
+                const nextRowCell = cells[index + 8];
+                if (nextRowCell) {
+                    nextRowCell.focus();
+                }
+            } else if (e.key === "ArrowUp") {
+                // 修改為觸發"上+左"
+                const prevRowCell = cells[index - 8];
+                if (prevRowCell) {
+                    prevRowCell.focus();
+                }
+            }
+        });
+    });
+}
+
+
+// 方向鍵移動焦點
+function handleArrowKeys() {
+    let cells = document.querySelectorAll("input");
+    // 設置初始焦點
+    cells[0].focus();
+    cells[0].blur();
+    // 純方向鍵
+    cells.forEach((cell, index) => {
+        cell.addEventListener("keydown", (e) => {
+            if (e.key === "ArrowRight" && index < cells.length - 1) {
+                cells[index + 1].focus();
+            } else if (e.key === "ArrowLeft" && index > 0) {
+                cells[index - 1].focus();
+            } else if (e.key === "ArrowDown") {
+                // 修改為觸發"下+右"
+                const nextRowCell = cells[index + 8];
+                if (nextRowCell) {
+                    nextRowCell.focus();
+                }
+            } else if (e.key === "ArrowUp") {
+                // 修改為觸發"上+左"
+                const prevRowCell = cells[index - 8];
+                if (prevRowCell) {
+                    prevRowCell.focus();
+                }
+            }
+        });
+    });
+}
+
+// Ctrl + 方向鍵移動焦點
+function handleCtrlArrowKeys() {
+    let cells = document.querySelectorAll("input");
+    // 設置初始焦點
+    cells[0].focus();
+    cells[0].blur();
+    // Ctrl + 方向鍵
+    cells.forEach((cell, index) => {
+        cell.addEventListener("keydown", (e) => {
+            if (e.key === "ArrowRight" && index < cells.length - 1) {
+                if (e.ctrlKey) {
+                    cells[index + 1].focus();
+                }
+            } else if (e.key === "ArrowLeft" && index > 0) {
+                if (e.ctrlKey) {
+                    cells[index - 1].focus();
+                }
+            } else if (e.key === "ArrowDown") {
+                // 修改為觸發"下+右"
+                if (e.ctrlKey) {
+                    const nextRowCell = cells[index + 8];
+                    if (nextRowCell) {
+                        nextRowCell.focus();
+                    }
+                }
+            } else if (e.key === "ArrowUp") {
+                // 修改為觸發"上+左"
+                if (e.ctrlKey) {
+                    const prevRowCell = cells[index - 8];
+                    if (prevRowCell) {
+                        prevRowCell.focus();
+                    }
+                }
+            }
+        });
+    });
+}

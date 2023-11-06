@@ -250,6 +250,8 @@ h1 {
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
+  height: 58px;
+  outline: 2px solid #56a2cf;
   position: fixed;
   display: block;
   width: 100%;
@@ -258,11 +260,6 @@ h1 {
   top: 0;
 }
 
-@media only screen and (max-width: 568px) {
-  h1 {
-    font-size: 2.25rem;
-  }
-}
 h2 {
   color: #82bcba;
   font-size: 1.75rem;
@@ -367,6 +364,7 @@ table th {
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
+  white-space: nowrap;
   position: sticky;
   top: 58px;
 }
