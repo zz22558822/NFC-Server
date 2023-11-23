@@ -17,7 +17,7 @@ Add_Excel_Data:
 每日固定時間(暫定10:15)運行一次，將 Excel 資料寫入 database 當中
 ※ 需要安裝 pip install schedule 、 pip install openpyxl 、 Ubuntu 不掛載SMB的話還需安裝 pip install pysmb
 ※ 創建掛接點 sudo mkdir /mnt/smb_mount
-※ 連結掛接點 sudo mount -t cifs -o username=aurora,password=C;4%p4@;4 //172.16.1.18/fs /mnt/smb_mount
+※ 連結掛接點 sudo mount -t cifs -o username=name,password=password //yourIP /mnt/smb_mount
 
 Add_Excel_Data 手動版 :
 如若有異常或是其他需求需要手動帶入資料時可以運行，會將 Excel 資料寫入 database 當中
